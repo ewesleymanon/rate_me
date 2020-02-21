@@ -5,16 +5,16 @@
         <a href="">Home</a>
       </li>
       <li>
-        <a href="">Events</a>
+        <a href="#events">Events</a>
       </li>
       <li>
-        <a href="">News</a>
+        <a href="#news">News</a>
       </li>
       <li>
-        <a href="">About</a>
+        <a href="#about">About</a>
       </li>
       <li>
-        <a href="">Sign In</a>
+        <router-link :to="{ name: 'login' }">Sign In</router-link>
       </li>
     </ul>
   </div>

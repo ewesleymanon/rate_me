@@ -14,10 +14,10 @@
           <li>Participate</li>
           <li>Review</li>
         </ul>
-        <div class="p-hero__btn">Get Started</div>
+        <router-link :to="{ name: 'register'}"><div class="p-hero__btn">Get Started</div></router-link>
       </div>
     </div>
-    <div class="p-events">
+    <div class="p-events" id="events">
       <h1 class="p-events__title">Events and Presentations</h1>
       <agile class="main" ref="main" :options="options1" :as-nav-for="asNavFor1">
         <div class="slide" v-for="(slide, index) in slides" :key="index" :class="`slide--${index}`">
@@ -30,7 +30,7 @@
         </div>
       </agile>
     </div>
-    <div class="p-news">
+    <div class="p-news" id="news">
       <h1 class="p-news__title">News</h1>
       <div class="p-news__content">
         <div class="p-news__content-profile">
@@ -65,10 +65,10 @@
         </div>
       </div>
     </div>
-    <div class="p-about">
+    <div class="p-about" id="about">
       <div class="p-about__content">
         <h1 class="p-about__content-title">About Us</h1>
-        <p><b>Rate Me</b> is a web service that provides easy, efficient and hassle free review for presenters. This service is inspired from the Nexseed’s engineering student presentation wherein the students showcase their web/ios applications.  The viewers of the presentation give ratings/review to each presenters based on their performance and the quality of their application. We offer systematic and digital way for giving reviews to the presenters. We are based on Nexseed’s  sofware development. </p>
+        <p><b>Rate Me</b> is a web service that provides <b>easy</b>, <b>efficient</b> and <b>hassle free</b> review for presenters. This service is inspired from the Nexseed’s engineering student presentation wherein the students showcase their web/ios applications.  The viewers of the presentation give ratings/review to each presenters based on their performance and the quality of their application. We offer systematic and digital way for giving reviews to the presenters. We are based on Nexseed’s  sofware development. </p>
       </div>
       <img src="../assets/images/gallery/clip-programming.png" alt="">
     </div>
