@@ -231,6 +231,7 @@ html {
       line-height: 56px;
       color: #000000;
       text-align: center;
+      margin-bottom: 25px;
     }
   
     &__content {
@@ -253,6 +254,7 @@ html {
           font-size: 28px;
           line-height: 20px;
           color: #000000;
+          margin-top: 20px;
         }
       }
   
@@ -282,6 +284,7 @@ html {
       &-compare {
         display: flex;
         justify-content: space-between;
+        margin-top: 25px;
   
         &-division {
           width: calc(50% - 50px);
@@ -295,11 +298,13 @@ html {
           color: #FFFFFF;
           background: #49006B;
           padding: 5px 15px;
+          margin-bottom: 25px;;
         }
         ul {
           li {
             text-align: left;
             margin-bottom: 15px;
+            list-style-type: square;
           }
         }
       }
