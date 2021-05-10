@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-// import { firestore, firebase } from '../../firebase'
+import { auth } from '../../firebase'
 import Cookies from 'js-cookie'
 
 export default {
@@ -38,8 +38,7 @@ export default {
     async submit () {
       try {
         this.loading = true
-        const user = await this.$firebase
-          .auth()
+        const user = await auth
           .signInWithEmailAndPassword(this.form.email, this.form.password)
         Cookies.remove('token')
         await this.$store.dispatch('setToken', user.user.ma)

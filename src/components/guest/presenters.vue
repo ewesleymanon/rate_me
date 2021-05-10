@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-import { firestore } from '../../firebase'
+import { db } from '../../firebase'
 export default {
   data: () => ({
     presenters: ''
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     fetchPresenters (id) {
-      firestore.collection(`events/${id}/presenters`)
+      db.collection(`events/${id}/presenters`)
         .onSnapshot(snapshot => {
           snapshot.docChanges().forEach(docChange => {
             const presenters = docChange.doc.data()

@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-import { firestore } from '../../firebase'
+import { db } from '../../firebase'
 import Loader from '../loader'
 export default {
   components: {
@@ -49,7 +49,7 @@ export default {
     fetchEvents () {
       this.loading = true
       setTimeout(() => {
-        firestore.collection('events').onSnapshot(snapshot => {
+        db.collection('events').onSnapshot(snapshot => {
           snapshot.docChanges().forEach(docChange => {
             const events = docChange.doc.data()
             events.id = docChange.doc.id

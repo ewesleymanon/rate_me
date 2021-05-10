@@ -4,11 +4,11 @@ import './registerServiceWorker'
 import router from './router'
 import './router/middleware'
 import store from './store'
-import firebasePlugin from './firebase.js'
+// import fire from './firebase.js'
 
-Vue.use(firebasePlugin)
+// Vue.use(fire)
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
 
 new Vue({
   router,

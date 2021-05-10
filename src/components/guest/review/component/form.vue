@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-import { firestore } from '../../../../firebase'
+import { db } from '../../../../firebase'
 import { mapGetters } from 'vuex'
 import StarRating from 'vue-star-rating'
 export default {
@@ -81,7 +81,7 @@ export default {
   methods: {
     async fetchReview () {
       try {
-        const reviewRef = await firestore.collection('reviews').doc(this.event_id)
+        const reviewRef = await db.collection('reviews').doc(this.event_id)
           .collection('presenter_ids').doc(this.presenter_id)
           .get().then(snapshot => {
             if (snapshot.exists) {
@@ -115,7 +115,7 @@ export default {
         if (this.rate.good_point !== '' && this.rate.kaizen_point !== '' && this.rate.rating !== '') {
           this.loading = true
           this.error = null
-          const presenterRef = await firestore.collection('events').doc(`${this.event_id}`).collection('presenters').doc(`${this.presenter_id}`)
+          const presenterRef = await db.collection('events').doc(`${this.event_id}`).collection('presenters').doc(`${this.presenter_id}`)
           const setRating = await presenterRef.set(this.rate, { merge: true })
           console.log(setRating)
           this.fetchReview()

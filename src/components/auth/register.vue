@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-import { firestore } from '../../firebase'
+import { db, auth } from '../../firebase'
 // import jd from 'jwt-decode'
 import Cookies from 'js-cookie'
 
@@ -52,8 +52,7 @@ export default {
       this.loading = true
       const valid = this.validation()
       if (valid) {
-        this.$firebase
-          .auth()
+        auth
           .createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then(data => {
             data.user
@@ -78,7 +77,7 @@ export default {
     async addUserCollection (uid, token) {
       console.log(this.form.name)
       try {
-        const user = await firestore.collection('users').doc(uid).set({
+        const user = await db.collection('users').doc(uid).set({
           name: this.form.name,
           role: 'guest'
         })

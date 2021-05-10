@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-import { firestore } from '../../../firebase'
+import { db } from '../../../firebase'
 import Loader from '../../loader'
 import ReviewForm from '../../guest/review/component/form'
 
@@ -39,7 +39,7 @@ export default {
   methods: {
     async fetchActiveEvent () {
       try {
-        const eventRef = await firestore.collection('events')
+        const eventRef = await db.collection('events')
         const snapshot = await eventRef.where('active', '==', true).get()
         if (snapshot.empty) {
           console.log('No Active Event!')
@@ -57,7 +57,7 @@ export default {
     fetchPresenters (id) {
       this.loading = true
       setTimeout(() => {
-        firestore.collection(`events/${id}/presenters`)
+        db.collection(`events/${id}/presenters`)
           .onSnapshot(snapshot => {
             if (snapshot.empty) {
               console.log('No presenters!')
