@@ -2,9 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import jd from 'jwt-decode/lib'
 import Cookies from 'js-cookie'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import { firestore } from '../firebase'
+import { db, auth } from '../firebase'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
@@ -43,7 +41,7 @@ export default new Vuex.Store({
     unsetUser ({ commit }) {
       return new Promise((resolve, reject) => {
         Cookies.remove('token')
-        firebase.auth().signOut().then(() => {
+        auth.signOut().then(() => {
           resolve()
         }).catch((error) => {
           console.log(error)
@@ -97,7 +95,7 @@ export default new Vuex.Store({
        * else sets to guest
        */
       const user = getters.user
-      firestore.collection('users').doc(user.user_id)
+      db.collection('users').doc(user.user_id)
         .get()
         .then(snapshot => {
           if (!snapshot.exists) {
