@@ -1,0 +1,55 @@
+#myChart {
+    margin: 25px 0;
+}
+.p-dashboard {
+padding: 50px 25px;
+
+    &__card {
+        display: flex;
+        justify-content: space-around;
+
+        &-item {
+        width: calc((100% / 4) - 20px);
+        height: auto;
+        border-radius: 10px;
+
+        &:first-child {
+            background: linear-gradient(317.05deg, #0A0E30 -20.86%, #49006B 25.17%, rgba(214, 40, 40, 0.723826) 103.64%, rgba(228, 115, 51, 0.462264) 136.63%);
+        }
+
+        &:nth-child(2) {
+            background: linear-gradient(317.05deg, rgba(214, 40, 40, 0.723826) -20.86%, rgba(228, 115, 51, 0.462264) 9.49%, #31E4DA 112.85%, #4C0070 136.63%);
+        }
+
+        &:nth-child(3) {
+            background: linear-gradient(317.05deg, rgba(245, 186, 186, 0.723826) -20.86%, rgba(51, 207, 228, 0.462264) 9.49%, #9430E2 112.85%, #4C0070 136.63%);
+        }
+
+        &:nth-child(4) {
+            background: linear-gradient(317.05deg, rgba(251, 251, 253, 0.723826) -20.86%, rgba(130, 0, 0, 0.462264) 9.49%, #0F18FB 112.85%, #450265 136.63%);
+        }
+
+        img {
+            display: block;
+            margin: 20px 20px 0 auto;
+        }
+
+        h1 {
+            font-family: Quicksand;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 64px;
+            color: #FFFEFE;
+            margin: 40px 0 30px;
+        }
+
+        h6 {
+            font-weight: normal;
+            font-size: 18px;
+            color: #FFFEFE;
+            margin-bottom: 20px;
+        }
+        }
+    }
+
+}

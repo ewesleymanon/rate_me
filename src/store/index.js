@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     token: Cookies.get('token'),
-    nav: 'guest'
+    layout: 'default'
   },
   mutations: {
     SET_USER (state, data) {
@@ -26,8 +26,8 @@ export default new Vuex.Store({
     SET_TOKEN (state, data) {
       state.token = data
     },
-    SET_NAV (state, data) {
-      state.nav = data
+    SET_LAYOUT (state, data) {
+      state.layout = data
     }
   },
   actions: {
@@ -88,14 +88,16 @@ export default new Vuex.Store({
         }
       })
     },
-    setNav ({ commit, getters }) {
+    setLayout ({ commit, getters }) {
       /**
        * This function checks the user's role
-       * if admin -> sets the nav to admin
+       * if admin -> sets the layout to admin
        * else sets to guest
        */
       const user = getters.user
-      db.collection('users').doc(user.user_id)
+      db
+        .collection('users')
+        .doc(user.user_id)
         .get()
         .then(snapshot => {
           if (!snapshot.exists) {
@@ -103,9 +105,11 @@ export default new Vuex.Store({
           } else {
             const verifiedUser = snapshot.data()
             if (verifiedUser.role === 'admin') {
-              commit('SET_NAV', 'admin')
+              commit('SET_LAYOUT', 'admin')
+            } else if (verifiedUser.role === 'guest') {
+              commit('SET_LAYOUT', 'guest')
             } else {
-              commit('SET_NAV', 'guest')
+              commit('SET_LAYOUT', 'default')
             }
           }
         })
@@ -118,8 +122,8 @@ export default new Vuex.Store({
     token (state) {
       return state.token
     },
-    nav (state) {
-      return state.nav
+    layout (state) {
+      return state.layout
     }
   }
 })

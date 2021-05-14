@@ -68,7 +68,7 @@
     <div class="p-about" id="about">
       <div class="p-about__content">
         <h1 class="p-about__content-title">About Us</h1>
-        <p><b>Rate Me</b> is a web service that provides <b>easy</b>, <b>efficient</b> and <b>hassle free</b> review for presenters. This service is inspired from the Nexseed’s engineering student presentation wherein the students showcase their web/ios applications.  The viewers of the presentation give ratings/review to each presenters based on their performance and the quality of their application. We offer systematic and digital way for giving reviews to the presenters. We are based on Nexseed’s  sofware development. </p>
+        <p><b>Rate Me</b> is a web service that provides <b>easy</b>, <b>efficient</b> and <b>hassle free</b> review for presenters. This service is inspired from the Nexseed’s engineering student presentation wherein the students showcase their web/ios applications.  The viewers of the presentation give review to each presenters based on their performance and the quality of their application. We offer systematic and digital way for giving reviews to the presenters. We are based on Nexseed’s  sofware development team. </p>
       </div>
       <img src="../assets/images/gallery/clip-programming.png" alt="">
     </div>
