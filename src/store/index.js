@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     token: Cookies.get('token'),
-    layout: 'default'
+    layout: 'guest'
   },
   mutations: {
     SET_USER (state, data) {
@@ -95,6 +95,7 @@ export default new Vuex.Store({
        * else sets to guest
        */
       const user = getters.user
+      console.log(user)
       db
         .collection('users')
         .doc(user.user_id)
@@ -108,8 +109,6 @@ export default new Vuex.Store({
               commit('SET_LAYOUT', 'admin')
             } else if (verifiedUser.role === 'guest') {
               commit('SET_LAYOUT', 'guest')
-            } else {
-              commit('SET_LAYOUT', 'default')
             }
           }
         })
