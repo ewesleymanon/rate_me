@@ -1,0 +1,29 @@
+.c- {
+    &submit {
+        &__btn {
+            width: 150px;
+            height: 50px;
+            background: #0A0E30;
+            color: #ffffff;
+            font-family: Raleway;
+            font-style: normal;
+            font-weight: medium;
+            font-size: 22px;
+            line-height: 50px;
+    
+            transition: all .5s ease-in-out 0s;
+
+            &:hover {
+                background: transparent;
+                border: 1px solid #0A0E30;
+                color: #0A0E30;
+                box-sizing: border-box;
+            }
+
+            &--disabled {
+                background: #F4F4F4;
+                color: #0A0E30;
+            }
+        }
+    }
+}

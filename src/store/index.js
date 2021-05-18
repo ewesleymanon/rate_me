@@ -2,16 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import jd from 'jwt-decode/lib'
 import Cookies from 'js-cookie'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import { firestore } from '../firebase'
+import { db, auth } from '../firebase'
 
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: null,
     token: Cookies.get('token'),
-    nav: 'guest'
+    layout: 'guest'
   },
   mutations: {
     SET_USER (state, data) {
@@ -28,8 +26,8 @@ export default new Vuex.Store({
     SET_TOKEN (state, data) {
       state.token = data
     },
-    SET_NAV (state, data) {
-      state.nav = data
+    SET_LAYOUT (state, data) {
+      state.layout = data
     }
   },
   actions: {
@@ -43,7 +41,7 @@ export default new Vuex.Store({
     unsetUser ({ commit }) {
       return new Promise((resolve, reject) => {
         Cookies.remove('token')
-        firebase.auth().signOut().then(() => {
+        auth.signOut().then(() => {
           resolve()
         }).catch((error) => {
           console.log(error)
@@ -90,14 +88,17 @@ export default new Vuex.Store({
         }
       })
     },
-    setNav ({ commit, getters }) {
+    setLayout ({ commit, getters }) {
       /**
        * This function checks the user's role
-       * if admin -> sets the nav to admin
+       * if admin -> sets the layout to admin
        * else sets to guest
        */
       const user = getters.user
-      firestore.collection('users').doc(user.user_id)
+      console.log(user)
+      db
+        .collection('users')
+        .doc(user.user_id)
         .get()
         .then(snapshot => {
           if (!snapshot.exists) {
@@ -105,9 +106,9 @@ export default new Vuex.Store({
           } else {
             const verifiedUser = snapshot.data()
             if (verifiedUser.role === 'admin') {
-              commit('SET_NAV', 'admin')
-            } else {
-              commit('SET_NAV', 'guest')
+              commit('SET_LAYOUT', 'admin')
+            } else if (verifiedUser.role === 'guest') {
+              commit('SET_LAYOUT', 'guest')
             }
           }
         })
@@ -120,8 +121,8 @@ export default new Vuex.Store({
     token (state) {
       return state.token
     },
-    nav (state) {
-      return state.nav
+    layout (state) {
+      return state.layout
     }
   }
 })

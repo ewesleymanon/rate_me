@@ -3,9 +3,6 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import firebasePlugin from './firebase.js'
-
-Vue.use(firebasePlugin)
 
 Vue.config.productionTip = false
 
