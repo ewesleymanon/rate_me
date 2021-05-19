@@ -4,11 +4,13 @@
   </div>
 </template>
 <script>
+import DefaultLayout from './components/layouts/default'
 import GuestLayout from './components/layouts/guest'
 import AdminLayout from './components/layouts/admin'
 import { mapGetters } from 'vuex'
 export default {
   components: {
+    default: DefaultLayout,
     guest: GuestLayout,
     admin: AdminLayout
   },

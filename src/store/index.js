@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     token: Cookies.get('token'),
-    layout: 'guest'
+    layout: 'default'
   },
   mutations: {
     SET_USER (state, data) {
@@ -94,24 +94,47 @@ export default new Vuex.Store({
        * if admin -> sets the layout to admin
        * else sets to guest
        */
+      // const validateToken = Cookies.get('token')
+      // if (validateToken) {
+      //   const decodedToken = jd(validateToken)
+
+      //   if (decodedToken) {
+      //     if (decodedToken.email === 'ewesleymanon@gmail.com') {
+      //       commit('SET_LAYOUT', 'admin')
+      //     } else {
+      //       commit('SET_LAYOUT', 'guest')
+      //     }
+      //   } else {
+      //     commit('SET_LAYOUT', 'default')
+      //   }
+      // }
+
       const user = getters.user
-      console.log(user)
-      db
-        .collection('users')
-        .doc(user.user_id)
-        .get()
-        .then(snapshot => {
-          if (!snapshot.exists) {
-            console.log('User is not found')
-          } else {
-            const verifiedUser = snapshot.data()
-            if (verifiedUser.role === 'admin') {
-              commit('SET_LAYOUT', 'admin')
-            } else if (verifiedUser.role === 'guest') {
-              commit('SET_LAYOUT', 'guest')
+
+      return new Promise((resolve, reject) => {
+        db
+          .collection('users')
+          .doc(user.user_id)
+          .get()
+          .then(snapshot => {
+            if (!snapshot.exists) {
+              console.log('User is not found')
+            } else {
+              const verifiedUser = snapshot.data()
+              if (verifiedUser.role === 'admin') {
+                commit('SET_LAYOUT', 'admin')
+              } else if (verifiedUser.role === 'guest') {
+                commit('SET_LAYOUT', 'guest')
+              } else {
+                commit('SET_LAYOUT', 'default')
+              }
+              resolve()
             }
-          }
-        })
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
     }
   },
   getters: {
